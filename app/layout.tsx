@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   title: "aaryan rajput | aaryanrajput.tech",
   description:
     "aaryan rajput is a web developer and designer who loves building websites and apps. he has worked with clients from all over the world as a freelancer, helping bring their ideas to life.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
