@@ -37,3 +37,12 @@ body {
   font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
   text-rendering: optimizeLegibility;
 }
+
+.project-preview {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 7%);
+}
