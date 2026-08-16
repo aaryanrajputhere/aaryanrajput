@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 mb-8 flex w-full items-center justify-between bg-[var(--page-bg)]/90 py-3 pt-15 text-[15px] backdrop-blur">
-      <h1 className="font-medium tracking-tight">aaryanrajput.tech</h1>
+      <h1 className="font-medium tracking-tight">aaryanrajput.com</h1>
       <nav>
         <a
           href="https://cal.com/aaryanrajput/30min"

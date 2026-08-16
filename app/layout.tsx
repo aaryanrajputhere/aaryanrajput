@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "aaryan rajput | aaryanrajput.tech",
+  title: "aaryan rajput | aaryanrajput.com",
   description:
     "aaryan rajput is a web developer and designer who loves building websites and apps. he has worked with clients from all over the world as a freelancer, helping bring their ideas to life.",
   icons: {

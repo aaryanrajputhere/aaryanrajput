@@ -1,7 +1,9 @@
 import Blogs from "./components/blogs";
 import Description from "./components/desciption";
 import Header from "./components/header";
+import Projects from "./components/projects";
 import { blogs } from "./data/blogs";
+import { projects } from "./data/projects";
 
 export default function Home() {
   return (
@@ -9,6 +11,7 @@ export default function Home() {
       <main className="mx-auto flex min-h-screen w-full max-w-[720px] flex-col px-6 pb-16 pt-0 sm:px-10">
         <Header />
         <Description />
+        <Projects projects={projects} />
         <Blogs blogs={blogs} />
         <footer className="mt-auto pt-24 text-sm text-[var(--text-muted)]">
           aaryan rajput (
