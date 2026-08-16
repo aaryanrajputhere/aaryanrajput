@@ -24,6 +24,37 @@ export default function Description() {
         freelancer, helping bring their ideas to life.
       </p>
 
+      <p className="mb-3">
+        i&apos;m also a Level 1 seller on{" "}
+        <a
+          href="https://www.fiverr.com/aaryanrajput314"
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-[var(--foreground)]/35 underline-offset-4 transition-colors hover:text-[var(--foreground)] hover:decoration-[var(--foreground)]/55"
+        >
+          Fiverr
+        </a>
+        , with 21 completed orders and 14 five-star reviews.
+      </p>
+
+      <p className="mb-8">
+        i&apos;ve worked on web development, app development, web scraping, and
+        data conversion.
+      </p>
+
+      <p className="mb-8">
+        i&apos;m currently building{" "}
+        <a
+          href="https://usecontentlane.com/"
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-[var(--foreground)]/35 underline-offset-4 transition-colors hover:text-[var(--foreground)] hover:decoration-[var(--foreground)]/55"
+        >
+          usecontentlane.com
+        </a>
+        , an AI UGC content creation platform for SaaS products.
+      </p>
+
       <p className="mb-12">
         whether you want to chat about your product or just talk about building
         cool stuff, i&apos;m all ears. let&apos;s{" "}
