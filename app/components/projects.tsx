@@ -41,8 +41,8 @@ export default function Projects({ projects }: ProjectsProps) {
                 <Image
                   src={project.image.src}
                   alt={project.image.alt}
-                  width={1871}
-                  height={968}
+                  width={project.image.width}
+                  height={project.image.height}
                   unoptimized
                   className="project-preview mb-5"
                 />

@@ -6,6 +6,8 @@ export type Project = {
   image?: {
     src: string;
     alt: string;
+    width: number;
+    height: number;
   };
 };
 
@@ -18,6 +20,8 @@ export const projects: Project[] = [
     image: {
       src: "/contentlane-screenshot.png",
       alt: "ContentLane website preview",
+      width: 1918,
+      height: 1001,
     },
   },
   {
@@ -29,6 +33,8 @@ export const projects: Project[] = [
     image: {
       src: "/perkpilot-screenshot.png",
       alt: "PerkPilot website preview",
+      width: 1871,
+      height: 968,
     },
   },
 ];
