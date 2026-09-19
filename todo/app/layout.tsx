@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Todo · Aaryan Rajput",
   description: "A private, synchronized task list.",
   icons: {
-    icon: "https://aaryanrajput.com/logo.svg",
-    shortcut: "https://aaryanrajput.com/logo.svg",
-    apple: "https://aaryanrajput.com/logo.svg",
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
   },
   robots: { index: false, follow: false },
 };
