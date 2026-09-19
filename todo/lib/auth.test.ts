@@ -1,5 +1,6 @@
 import { beforeAll, describe, expect, it } from "vitest";
-import { accessKeyMatches, createSessionToken, hashAccessKey, verifySessionToken } from "./auth";
+import { decodeJwt } from "jose";
+import { accessKeyMatches, createSessionToken, hashAccessKey, SESSION_TTL_SECONDS, verifySessionToken } from "./auth";
 
 const key = "todo_test_access_key_that_is_long_enough";
 
@@ -19,5 +20,10 @@ describe("authentication", () => {
     expect(await verifySessionToken(token)).toBe(true);
     expect(await verifySessionToken(`${token.slice(0, -1)}x`)).toBe(false);
     expect(await verifySessionToken()).toBe(false);
+  });
+
+  it("expires the signed session after 30 days", async () => {
+    const payload = decodeJwt(await createSessionToken());
+    expect(payload.exp! - payload.iat!).toBe(SESSION_TTL_SECONDS);
   });
 });

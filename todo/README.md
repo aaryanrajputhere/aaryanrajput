@@ -5,7 +5,7 @@ A private, synchronized personal todo list for [todo.aaryanrajput.com](https://t
 ## Features
 
 - Add, complete, filter, and delete tasks
-- Secure access-key login with an HttpOnly JWT session cookie
+- Secure access-key login with an HttpOnly JWT session cookie that lasts 30 days
 - Synchronizes tasks across devices with Upstash Redis
 - Imports tasks from the original browser-only version once
 - Responsive and accessible

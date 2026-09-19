@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { Ratelimit } from "@upstash/ratelimit";
 import { z } from "zod";
-import { accessKeyMatches, createSessionToken, SESSION_COOKIE } from "@/lib/auth";
+import { accessKeyMatches, createSessionToken, SESSION_COOKIE, SESSION_TTL_SECONDS } from "@/lib/auth";
 import { getRedis } from "@/lib/redis";
 import { json, readJson, requireSameOrigin } from "@/lib/http";
 
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     const parsed = schema.safeParse(await readJson(request, 1024));
     if (!parsed.success || !accessKeyMatches(parsed.data.key)) return json({ error: "Unable to authenticate" }, 401);
     const response = json({ ok: true });
-    response.cookies.set(SESSION_COOKIE, await createSessionToken(), { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "strict", path: "/" });
+    response.cookies.set(SESSION_COOKIE, await createSessionToken(), { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "strict", path: "/", maxAge: SESSION_TTL_SECONDS });
     return response;
   } catch { return json({ error: "Unable to authenticate" }, 401); }
 }
