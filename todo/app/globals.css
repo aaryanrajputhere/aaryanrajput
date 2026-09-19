@@ -23,6 +23,12 @@ ul { margin:0; padding:0; list-style:none; } .todo-item { display:flex; align-it
 .check { flex:0 0 16px; width:16px; height:16px; padding:0; border:1px solid #555; border-radius:2px; color:transparent; background:transparent; font-size:11px; line-height:14px; }
 .check:hover { border-color:var(--foreground); } .todo-text { flex:1; overflow-wrap:anywhere; }
 .todo-item.completed .check { border-color:#666; color:var(--background); background:#aaa; } .todo-item.completed .todo-text { color:var(--faint); text-decoration:line-through; }
+.todo-item.urgent:not(.completed) { margin-inline:-12px; padding-inline:12px; border-bottom-color:#713036; color:#ff9b9f; background:#2b1015; }
+.todo-item.urgent:not(.completed) .check { border-color:#e36b73; }
+.urgent-toggle { flex:0 0 auto; padding:3px 7px; border:1px solid #555; border-radius:4px; color:var(--muted); background:transparent; font-size:11px; line-height:1.4; }
+.urgent-toggle:hover,.urgent-toggle:focus-visible { border-color:var(--foreground); color:var(--foreground); }
+.todo-item.urgent:not(.completed) .urgent-toggle { border-color:#e36b73; color:#ff9b9f; }
+.todo-item.completed .urgent-toggle { border-color:#444; color:var(--faint); }
 .delete { padding:8px; opacity:0; font-size:18px; } .todo-item:hover .delete,.delete:focus-visible { opacity:1; } .delete:hover { color:var(--foreground); }
 .empty { padding:56px 0; border-bottom:1px solid var(--line); } .empty p { margin:0 0 4px; color:var(--muted); } .empty small { color:var(--faint); font-size:13px; }
 footer { display:flex; justify-content:space-between; padding-top:18px; color:var(--faint); font-size:12px; } footer p { margin:0; } footer button { font-size:inherit; } footer button:hover { color:var(--foreground); }

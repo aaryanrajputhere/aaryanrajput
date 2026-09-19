@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Todo } from "@/lib/types";
+import { orderTodos } from "@/lib/todo-order";
 
 const LEGACY_STORAGE_KEY = "aaryan-todos-v1";
 type Filter = "all" | "active" | "completed";
@@ -33,7 +34,7 @@ export function TodoApp({ initialTodos }: { initialTodos: Todo[] }) {
     } catch { setError("could not read the tasks saved on this device."); }
   }, []);
 
-  const visible = useMemo(() => todos.filter((todo) => filter === "all" || (filter === "active" ? !todo.completed : todo.completed)), [todos, filter]);
+  const visible = useMemo(() => orderTodos(todos.filter((todo) => filter === "all" || (filter === "active" ? !todo.completed : todo.completed))), [todos, filter]);
   const remaining = todos.filter((todo) => !todo.completed).length;
   const today = new Intl.DateTimeFormat("en-IN", { weekday: "long", day: "numeric", month: "long" }).format(new Date());
 
@@ -46,6 +47,11 @@ export function TodoApp({ initialTodos }: { initialTodos: Todo[] }) {
   async function toggle(todo: Todo) {
     setError("");
     try { const { todo: updated } = await api<{ todo: Todo }>(`/api/todos/${todo.id}`, { method: "PATCH", body: JSON.stringify({ completed: !todo.completed }) }); setTodos((current) => current.map((item) => item.id === updated.id ? updated : item)); }
+    catch { setError("could not update that task."); }
+  }
+  async function toggleUrgent(todo: Todo) {
+    setError("");
+    try { const { todo: updated } = await api<{ todo: Todo }>(`/api/todos/${todo.id}`, { method: "PATCH", body: JSON.stringify({ urgent: !todo.urgent }) }); setTodos((current) => current.map((item) => item.id === updated.id ? updated : item)); }
     catch { setError("could not update that task."); }
   }
   async function remove(todo: Todo) {
@@ -67,7 +73,7 @@ export function TodoApp({ initialTodos }: { initialTodos: Todo[] }) {
       <section className="composer" aria-label="Add a task"><form onSubmit={addTodo}><label className="sr-only" htmlFor="todo-input">New task</label><input id="todo-input" name="text" placeholder="what needs doing?" maxLength={140} autoComplete="off" required /><button type="submit" disabled={busy}>{busy ? "adding…" : "add task"}</button></form></section>
       <section className="tasks" aria-live="polite">
         <div className="toolbar"><p><strong>{remaining}</strong> remaining</p><div className="filters" role="group" aria-label="Filter tasks">{(["all", "active", "completed"] as Filter[]).map((value) => <button key={value} className={`filter${filter === value ? " active" : ""}`} onClick={() => setFilter(value)}>{value === "completed" ? "done" : value}</button>)}</div></div>
-        <ul>{visible.map((todo) => <li key={todo.id} className={`todo-item${todo.completed ? " completed" : ""}`}><button className="check" onClick={() => toggle(todo)} aria-label={todo.completed ? "Mark as active" : "Mark as completed"}>✓</button><span className="todo-text">{todo.text}</span><button className="delete" onClick={() => remove(todo)} aria-label={`Delete ${todo.text}`}>×</button></li>)}</ul>
+        <ul>{visible.map((todo) => <li key={todo.id} className={`todo-item${todo.completed ? " completed" : ""}${todo.urgent ? " urgent" : ""}`}><button className="check" onClick={() => toggle(todo)} aria-label={todo.completed ? `Mark ${todo.text} as active` : `Mark ${todo.text} as completed`}>✓</button><span className="todo-text">{todo.text}</span><button className="urgent-toggle" onClick={() => toggleUrgent(todo)} aria-pressed={todo.urgent} aria-label={`${todo.urgent ? "Remove urgent from" : "Mark urgent"} ${todo.text}`}>urgent</button><button className="delete" onClick={() => remove(todo)} aria-label={`Delete ${todo.text}`}>×</button></li>)}</ul>
         {!visible.length && <div className="empty"><p>nothing here yet.</p><small>add a task above and make a little progress.</small></div>}
       </section>
       <p className="form-error app-error" role="alert">{error}</p>
