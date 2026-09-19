@@ -37,5 +37,18 @@ footer { display:flex; justify-content:space-between; padding-top:18px; color:va
 .login-form { margin-top:36px; } .login-form input { letter-spacing:.04em; } .login-form .form-error { position:absolute; margin-top:90px; }
 .sr-only { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 @keyframes arrive { from { opacity:0; transform:translateY(-4px); } }
+/* Quiet motion gives task changes feedback without drawing attention from the list. */
+.composer form { transition:border-color .25s ease; }
+.composer button,.filter,.link-button,footer button { transition:color .2s ease, opacity .2s ease, text-decoration-color .2s ease; }
+.todo-item { animation:arrive .32s cubic-bezier(.22,1,.36,1) both; transition:background-color .28s ease, border-color .28s ease, color .28s ease; }
+.todo-item:not(.urgent):not(.completed):hover { background:#141414; }
+.todo-item.urgent:not(.completed):hover { background:#371419; }
+.todo-text { transition:color .25s ease, opacity .25s ease; }
+.check,.urgent-toggle { transition:background-color .22s ease, border-color .22s ease, color .22s ease, transform .22s cubic-bezier(.22,1,.36,1); }
+.check:hover,.urgent-toggle:hover { transform:translateY(-1px); }
+.check:active,.urgent-toggle:active { transform:scale(.92); }
+.delete { transition:opacity .2s ease, color .2s ease, transform .2s ease; }
+.delete:hover { transform:scale(1.12); }
+.todo-item button:focus-visible,.filter:focus-visible,.composer button:focus-visible { outline:2px solid #c6c6c6; outline-offset:3px; }
 @media (max-width:560px) { .shell { padding-inline:24px; } .site-header { min-height:112px; } .intro { margin-bottom:36px; } .filters { gap:10px; } .delete { opacity:.7; } .login-panel { margin-top:36px; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
