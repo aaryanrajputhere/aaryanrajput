@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "dev:todo": "npm --prefix todo-aaryanrajput run dev -- -p 3001",
+    "build:todo": "npm --prefix todo-aaryanrajput run build",
+    "test:todo": "npm --prefix todo-aaryanrajput run test"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
