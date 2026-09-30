@@ -2,7 +2,7 @@ export type Project = {
   name: string;
   type: string;
   description: string;
-  url: string;
+  url?: string;
   image?: {
     src: string;
     alt: string;
@@ -12,6 +12,18 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    name: "FitCheck",
+    type: "launching soon",
+    description:
+      "an AI-powered iOS app that turns outfit photos into a digital wardrobe and suggests looks for your style, occasion, and weather.",
+    image: {
+      src: "/fitcheck.png",
+      alt: "FitCheck iOS app screens showing a digital wardrobe and AI styling suggestions",
+      width: 1920,
+      height: 1080,
+    },
+  },
   {
     name: "ContentLane",
     type: "built by me",

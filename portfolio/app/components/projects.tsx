@@ -12,25 +12,21 @@ export default function Projects({ projects }: ProjectsProps) {
       <div className="border-y border-[var(--line)]">
         {projects.map((project) => (
           <div key={project.name} className="border-b border-[var(--line)] last:border-b-0">
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noreferrer"
-              className="group block py-4"
-            >
-              <div className="mb-1 flex items-baseline justify-between gap-4 text-[15px]">
-                <span className="font-medium group-hover:underline">
-                  {project.name}
-                </span>
-                <span className="shrink-0 text-right text-[var(--text-muted)]">
-                  {project.type}
-                </span>
+            {project.url ? (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group block py-4"
+              >
+                <ProjectDetails project={project} />
+              </a>
+            ) : (
+              <div className="py-4">
+                <ProjectDetails project={project} />
               </div>
-              <p className="max-w-[580px] text-[14px] leading-6 text-[var(--text-muted)]">
-                {project.description}
-              </p>
-            </a>
-            {project.image && (
+            )}
+            {project.image && project.url ? (
               <a
                 href={project.url}
                 target="_blank"
@@ -38,19 +34,47 @@ export default function Projects({ projects }: ProjectsProps) {
                 aria-label={`Visit ${project.name}`}
                 className="block"
               >
-                <Image
-                  src={project.image.src}
-                  alt={project.image.alt}
-                  width={project.image.width}
-                  height={project.image.height}
-                  unoptimized
-                  className="project-preview mb-5"
-                />
+                <ProjectImage project={project} />
               </a>
-            )}
+            ) : project.image ? (
+              <ProjectImage project={project} />
+            ) : null}
           </div>
         ))}
       </div>
     </section>
+  );
+}
+
+function ProjectDetails({ project }: { project: Project }) {
+  return (
+    <>
+      <div className="mb-1 flex items-baseline justify-between gap-4 text-[15px]">
+        <span className="font-medium group-hover:underline">
+          {project.name}
+        </span>
+        <span className="shrink-0 text-right text-[var(--text-muted)]">
+          {project.type}
+        </span>
+      </div>
+      <p className="max-w-[580px] text-[14px] leading-6 text-[var(--text-muted)]">
+        {project.description}
+      </p>
+    </>
+  );
+}
+
+function ProjectImage({ project }: { project: Project }) {
+  if (!project.image) return null;
+
+  return (
+    <Image
+      src={project.image.src}
+      alt={project.image.alt}
+      width={project.image.width}
+      height={project.image.height}
+      unoptimized
+      className="project-preview mb-5"
+    />
   );
 }
