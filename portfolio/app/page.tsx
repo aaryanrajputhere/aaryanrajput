@@ -2,8 +2,10 @@ import Blogs from "./components/blogs";
 import Description from "./components/desciption";
 import Header from "./components/header";
 import Projects from "./components/projects";
+import Testimonials from "./components/testimonials";
 import { blogs } from "./data/blogs";
 import { projects } from "./data/projects";
+import { testimonials } from "./data/testimonials";
 
 export default function Home() {
   return (
@@ -12,6 +14,7 @@ export default function Home() {
         <Header />
         <Description />
         <Projects projects={projects} />
+        <Testimonials testimonials={testimonials} />
         <Blogs blogs={blogs} />
         <footer className="mt-auto pt-24 text-sm text-[var(--text-muted)]">
           aaryan rajput (

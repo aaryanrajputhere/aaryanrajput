@@ -17,7 +17,7 @@ export const projects: Project[] = [
     name: "FitCheck",
     type: "launching soon",
     description:
-      "an AI-powered iOS app that turns outfit photos into a digital wardrobe and suggests looks for your style, occasion, and weather.",
+      "an AI wardrobe app for iOS with outfit ideas tailored to your style and weather.",
     demoVideo: "/fitcheck-demo.mp4",
     image: {
       src: "/fitcheck.png",

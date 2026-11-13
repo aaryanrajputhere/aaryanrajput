@@ -14,30 +14,30 @@ export default function Projects({ projects }: ProjectsProps) {
   return (
     <section className="mb-12">
       <h2 className="mb-3 text-[15px]">projects</h2>
-      <div className="border-y border-[var(--line)]">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {projects.map((project) => (
-          <div key={project.name} className="border-b border-[var(--line)] last:border-b-0">
+          <div key={project.name} className="project-card flex min-w-0 flex-col rounded-xl border border-[var(--line)] p-4">
             {project.demoVideo ? (
               <button
                 type="button"
                 onClick={() => setActiveDemo(project)}
-                className="group block w-full cursor-pointer py-4 text-left"
+                className="group flex h-full w-full cursor-pointer flex-col text-left"
                 aria-label={`Play ${project.name} demo video`}
               >
-                <ProjectDetails project={project} showDemoLabel />
-                {project.image ? <ProjectImage project={project} interactive /> : null}
+                <div className="w-full"><ProjectDetails project={project} showDemoLabel /></div>
+                {project.image ? <div className="mt-auto w-full pt-4"><ProjectImage project={project} interactive /></div> : null}
               </button>
             ) : project.url ? (
               <a
                 href={project.url}
                 target="_blank"
                 rel="noreferrer"
-                className="group block py-4"
+                className="group block"
               >
                 <ProjectDetails project={project} />
               </a>
             ) : (
-              <div className="py-4">
+              <div>
                 <ProjectDetails project={project} />
               </div>
             )}
@@ -47,12 +47,12 @@ export default function Projects({ projects }: ProjectsProps) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`Visit ${project.name}`}
-                className="block"
+                className="mt-auto block pt-4"
               >
                 <ProjectImage project={project} />
               </a>
             ) : !project.demoVideo && project.image ? (
-              <ProjectImage project={project} />
+              <div className="mt-auto pt-4"><ProjectImage project={project} /></div>
             ) : null}
           </div>
         ))}
@@ -73,7 +73,7 @@ function ProjectDetails({
 }) {
   return (
     <>
-      <div className="mb-1 flex items-baseline justify-between gap-4 text-[15px]">
+      <div className="mb-2 flex min-h-6 flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[15px]">
         <span className="font-medium group-hover:underline">
           {project.name}
         </span>
@@ -82,12 +82,12 @@ function ProjectDetails({
             <span className="demo-play-icon">▶</span> play demo
           </span>
         ) : (
-          <span className="shrink-0 text-right text-[var(--text-muted)]">
+          <span className="text-[12px] text-[var(--text-muted)]">
             {project.type}
           </span>
         )}
       </div>
-      <p className="max-w-[580px] text-[14px] leading-6 text-[var(--text-muted)]">
+      <p className="text-[14px] leading-6 text-[var(--text-muted)]">
         {project.description}
       </p>
     </>
@@ -110,7 +110,7 @@ function ProjectImage({
       width={project.image.width}
       height={project.image.height}
       unoptimized
-      className={`project-preview mb-5 ${interactive ? "project-preview-interactive" : ""}`}
+      className={`project-grid-preview ${interactive ? "project-preview-interactive" : ""}`}
     />
   );
 }

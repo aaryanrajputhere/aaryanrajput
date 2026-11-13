@@ -47,6 +47,68 @@ body {
   box-shadow: 0 12px 28px rgb(0 0 0 / 7%);
 }
 
+.review-marquee {
+  scrollbar-width: none;
+}
+
+.review-track {
+  animation: reviews-drift 65s linear infinite;
+}
+
+.review-card {
+  width: min(520px, calc(100vw - 96px));
+}
+
+.review-marquee:hover .review-track,
+.review-marquee:focus-within .review-track,
+.review-track.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes reviews-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-track { animation: none; }
+  .review-group[aria-hidden="true"] { display: none; }
+  .review-motion-control { display: none; }
+}
+
+.project-grid-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.project-card .demo-label {
+  font-size: 12px;
+}
+
+.project-card .demo-play-icon {
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 640px) {
+  .project-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .project-card:last-child:nth-child(odd) > a {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
 .project-preview-interactive {
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
